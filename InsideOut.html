@@ -1,29 +1,67 @@
 <html lang="en">
-  <head>
-    <title>Titan Discovery</title>
-    <script src="web3.js"></script>
-    <script>
-        web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/99BTFgzQ1F7M9lD9t"));
 
-function getData(){
-  var CurretActiveNodes =0;
-  var EnodeAddr=1 ;
-  var IpAddr=2 ;
-  var TotalNodes=3;
-  var NodeName=4;
-  
- 
-   
+<head>
+  <title>Titan Discovery</title>
+  <script src="web3.js"></script>
+  <script>
+    // web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/99BTFgzQ1F7M9lD9t"));
+    //var Web3 = require('web3');
+    var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 
-console.log(JSON.stringify({a : CurretActiveNodes, b : EnodeAddr, c : IpAddr, d : TotalNodes, e : NodeName}));
-}
+    //this is for adding miner account address and its name of the node
+    var HashableTable = {};
+    function getData() {
+      var CurretActiveNodes;
+      var EnodeAddr;
+      var IpAddr;
+      var TotalNodes;
+      var NodeName;
+      var Active; // is current node is active
+      var MinerNode; // is current client is mining 
+      var version = web3.version.node; // version of client node
+      Active = web3.net.listening;
+      CurretActiveNodes = web3.net.peerCount;
+      MinerNode = web3.eth.mining;
+
+      //Returns thew list of client address maintaining the nodes
+      var accounts = web3.eth.accounts
+      var _blockNumber = web3.eth.blockNumber;
+
+      var GetBlock = web3.eth.getBlock(_blockNumber);
+      // var nodeInfo = web3.admin.nodeInfo;
+
+      console.log(nodeName(GetBlock));
+      console.log(version);
+      console.log(Active);
+      console.log(CurretActiveNodes);
+      console.log(MinerNode);
+      console.log(JSON.stringify({ a: CurretActiveNodes, b: EnodeAddr, c: IpAddr, d: TotalNodes, e: NodeName }));
+    }
+    // console.log(nodeInfo);
+    //here we retrieve the address of the miner account so we can easyly identify the node name
+    function retrieveAddress() {
+
+    }
+    //adding address of the miner node account 
+    //Either this can be added manually 
+    //TODO: pass via ux directly to store key value pair
+    function addAddress(_address, _nodename) {
+      HashableTable._address = _nodename;
+    }
+
+    function nodeName() {
+
+      var _blockNumber = web3.eth.blockNumber;
+      var GetBlock = web3.eth.getBlock(_blockNumber); //get the address of the  miner account
+
+    }
+    
+
+  </script>
+</head>
+
+<body onload="getData()">
 
 
-    </script>
-  </head>
- 
-  <body onload = "getData()">
-  
-  
- 
+
 </html>
