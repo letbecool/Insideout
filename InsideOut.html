@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <title>Titan Discovery</title>
+    <script src="web3.js"></script>
+    <script>
+        web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/99BTFgzQ1F7M9lD9t"));
+
+function getData(){
+  var CurretActiveNodes =0;
+  var EnodeAddr=1 ;
+  var IpAddr=2 ;
+  var TotalNodes=3;
+  var NodeName=4;
+  
+ 
+   
+
+console.log(JSON.stringify({a : CurretActiveNodes, b : EnodeAddr, c : IpAddr, d : TotalNodes, e : NodeName}));
+}
+
+
+    </script>
+  </head>
+ 
+  <body onload = "getData()">
+  
+  
+ 
+</html>
